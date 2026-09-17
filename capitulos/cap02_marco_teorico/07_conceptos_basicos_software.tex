@@ -1,0 +1,18 @@
+\subsection{Conceptos básicos de software}
+\label{subsec:conceptos_software}
+
+Para comprender la estructura técnica sobre la que se construye la página web, se describen de forma sencilla tres fundamentos de computación:
+
+\subsubsection{Arquitectura Cliente--Servidor}
+La página web opera bajo el esquema de cliente--servidor \parencite{tanenbaum2011redes}. En este modelo, el usuario entra a internet desde su navegador en la computadora o celular (el cliente) y solicita información. Esta petición viaja por la red hasta una computadora central protegida (el servidor), la cual se encarga de revisar los permisos, procesar las pantallas y devolver los archivos y datos correspondientes.
+
+\subsubsection{Bases de datos organizadas en tablas (Relacionales)}
+Toda la información del seguimiento de tesis se guarda dentro de una base de datos relacional \parencite{silberschatz2014}. En este esquema, los datos se ordenan en tablas de filas y columnas que se conectan entre sí mediante identificadores comunes (por ejemplo, la tabla de alumnos se conecta con la de asesores, la de entregas en PDF y la de minutas). Esto asegura que la información no se revuelva, que ningún archivo quede huérfano y que no existan datos repetidos.
+
+\subsubsection{Control de acceso basado en roles}
+Para cuidar la privacidad de la comunidad académica, la página web implementa un control de acceso por roles \parencite{ferraiolo2007}. Esto garantiza que cada usuario tenga una cuenta propia y visualice únicamente lo que le toca revisar:
+\begin{itemize}
+    \item \textbf{Rol Alumno:} Únicamente puede consultar su propio expediente, subir sus borradores de tesis en PDF y revisar la lista de compromisos y minutas de sus asesorías.
+    \item \textbf{Rol Asesor:} Le permite ver la lista de sus alumnos asignados, descargar los archivos de borrador entregados, escribir correcciones y llenar las minutas al terminar cada reunión.
+    \item \textbf{Rol Coordinación:} Brinda una vista general de todo el posgrado para supervisar el ritmo de avance de todos los estudiantes y atender oportunamente los avisos de inactividad que superen los 30 días.
+\end{itemize}

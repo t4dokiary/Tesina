@@ -1,0 +1,227 @@
+\section{Casos de Uso de la Página Web}
+\label{sec:casos_uso}
+
+Para entender con facilidad qué tareas puede realizar cada persona dentro de la página web, a continuación se explican por separado las cuatro actividades principales. En cada una se detalla quién participa, los pasos que se siguen de inicio a fin y las reglas obligatorias que no se pueden romper para que todo funcione de forma ordenada y los alumnos no se atrasen con su tesis \parencite{sim2023technology}.
+
+% ----------------------------------------------------------------------
+% CASO DE USO 1: INICIO DE SESIÓN
+% ----------------------------------------------------------------------
+\subsection{Caso de Uso 1: Iniciar Sesión en la Página Web (CU01)}
+\label{subsec:cu01}
+
+En este apartado se explica cómo entran los alumnos, los maestros y el coordinador a su cuenta usando su correo de la escuela y su contraseña, para que cada quien vea únicamente la información que le corresponde.
+
+\begin{small}
+\begin{longtable}{p{3.5cm} p{11.5cm}}
+\caption{Descripción del Caso de Uso 1: Iniciar Sesión.} \label{tab:cu01} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\tablename\ \thetable\ -- Continuación de la página anterior} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{Identificador} & CU01 \\ \addlinespace
+\textbf{Nombre} & Iniciar sesión en la página web \\ \addlinespace
+\textbf{Participantes} & Alumno, Tutor o Maestro y Coordinador. \\ \addlinespace
+\textbf{Propósito} & Revisar que la persona sea quien dice ser para permitirle entrar a sus pantallas de trabajo. \\ \addlinespace
+\textbf{Requisitos previos} & Que la persona tenga una cuenta registrada y activa con su correo de la escuela. \\ \addlinespace
+\textbf{Pasos principales} & 
+1. La persona entra a la dirección de la página web desde su navegador de internet.\par
+2. La pantalla le pide escribir su correo de la escuela y su clave de acceso.\par
+3. El usuario escribe sus datos y presiona el botón para entrar.\par
+4. La página web revisa si los datos coinciden con la información guardada.\par
+5. Si todo está correcto, la página web abre la pantalla que le toca a cada uno:\par
+\quad $\bullet$ Al alumno le muestra sus tareas y entregas pendientes.\par
+\quad $\bullet$ Al maestro le muestra la lista de sus alumnos asesorados.\par
+\quad $\bullet$ Al coordinador le muestra el listado general de toda la escuela. \\ \addlinespace
+\textbf{Caminos alternativos} & 
+$\bullet$ Si el correo o la contraseña están mal escritos, la página web muestra un aviso en color rojo para que lo vuelva a intentar.\par
+$\bullet$ Si la cuenta está desactivada, la página web no deja pasar al usuario y le pide acudir con la coordinación. \\ \addlinespace
+\textbf{Regla obligatoria} & \textbf{Privacidad de la cuenta:} Nadie puede ver información ajena; ningún alumno podrá entrar a ver los documentos o notas de otro compañero. \\
+\end{longtable}
+\end{small}
+
+Para ver de forma más clara cómo entran los usuarios a la página web, en la Figura~\ref{fig:cu01_login} se muestra el dibujo donde se aprecia la revisión de los datos y el mensaje de aviso cuando la contraseña no es correcta.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth]{assets/casos_uso/cu01_login.png}
+    \caption{Diagrama del Caso de Uso 1: Iniciar Sesión en la Página Web.}
+    \label{fig:cu01_login}
+\end{figure}
+
+% ----------------------------------------------------------------------
+% CASO DE USO 2: REVISIÓN Y ENTREGA DE BORRADORES
+% ----------------------------------------------------------------------
+\subsection{Caso de Uso 2: Subir y Revisar Borradores de Tesis en PDF (CU02)}
+\label{subsec:cu02}
+
+En esta parte se muestra el camino para que el alumno entregue sus archivos de tesis, el maestro los pueda descargar para leerlos y dejar comentarios con correcciones, y la coordinación pueda ver que el trabajo siga avanzando sin perder copias viejas.
+
+\begin{small}
+\begin{longtable}{p{3.5cm} p{11.5cm}}
+\caption{Descripción del Caso de Uso 2: Subida y revisión de tesis.} \label{tab:cu02} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\tablename\ \thetable\ -- Continuación de la página anterior} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{Identificador} & CU02 \\ \addlinespace
+\textbf{Nombre} & Manejo y entrega de borradores de tesis \\ \addlinespace
+\textbf{Participantes} & Alumno (sube el trabajo), Tutor o Maestro (descarga y revisa), Coordinador (revisa el avance general). \\ \addlinespace
+\textbf{Propósito} & Guardar ordenadamente los archivos de la tesis para conservar la historia completa de cambios. \\ \addlinespace
+\textbf{Requisitos previos} & Que el alumno tenga una cuenta activa y un maestro asignado en la página web. \\ \addlinespace
+\textbf{Pasos principales} & 
+1. El alumno entra a su apartado de entregas dentro de la página web.\par
+2. Elige el archivo en su computadora, escribe una nota opcional y presiona ``Subir borrador''.\par
+3. La página web revisa el archivo y le asigna un número de versión para ordenarlo (Versión 1, Versión 2, etc.).\par
+4. El maestro entra a la página web y ve que su alumno subió un trabajo nuevo.\par
+5. El maestro presiona el archivo para descargarlo y leerlo con calma.\par
+6. En esa misma pantalla, el maestro anota sus observaciones o correcciones y las guarda.\par
+7. Tanto el alumno como la coordinación pueden revisar la lista de entregas pasadas y los comentarios del maestro. \\ \addlinespace
+\textbf{Caminos alternativos} & Si el estudiante intenta subir un archivo en un formato que no sea PDF (como Word o fotos), la página web lo rechaza y le pide elegir un documento en PDF. \\ \addlinespace
+\textbf{Reglas obligatorias} & 
+1. \textbf{Solo formato PDF:} Únicamente se aceptan archivos PDF para asegurar que las letras, tablas e imágenes no se muevan de lugar al abrirlos en otra computadora \parencite{iso32000}.\par
+2. \textbf{No borrar archivos viejos:} La página web prohíbe eliminar o sobreescribir trabajos anteriores; cada entrega se guarda aparte para no perder ninguna corrección \parencite{chacon2014progit}. \\
+\end{longtable}
+\end{small}
+
+En la Figura~\ref{fig:cu02_avances} se muestra el diagrama con las acciones de este apartado, donde se ve cómo el alumno sube el documento y el maestro lo descarga para responderle con sus observaciones.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.72\textwidth]{assets/casos_uso/cu02_avances.png}
+    \caption{Diagrama del Caso de Uso 2: Manejo de Avances de Tesis.}
+    \label{fig:cu02_avances}
+\end{figure}
+
+% ----------------------------------------------------------------------
+% CASO DE USO 3: REGISTRO DE MINUTAS
+% ----------------------------------------------------------------------
+\subsection{Caso de Uso 3: Llenar y Consultar Minutas de Asesoría (CU03)}
+\label{subsec:cu03}
+
+Aquí se explica la forma en que se guardan los acuerdos por escrito cada vez que el maestro y el alumno se juntan a revisar la tesis, evitando que las tareas se olviden con los días.
+
+\begin{small}
+\begin{longtable}{p{3.5cm} p{11.5cm}}
+\caption{Descripción del Caso de Uso 3: Minutas de asesoría.} \label{tab:cu03} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\tablename\ \thetable\ -- Continuación de la página anterior} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{Identificador} & CU03 \\ \addlinespace
+\textbf{Nombre} & Llenar y consultar minutas de asesoría \\ \addlinespace
+\textbf{Participantes} & Tutor o Maestro (escribe la minuta), Alumno (revisa sus tareas), Coordinador (supervisa las reuniones). \\ \addlinespace
+\textbf{Propósito} & Dejar un registro claro de lo que se habló en la reunión y qué tareas debe entregar cada quien para la siguiente cita. \\ \addlinespace
+\textbf{Requisitos previos} & Haber terminado una reunión de asesoría (ya sea en persona o por videollamada). \\ \addlinespace
+\textbf{Pasos principales} & 
+1. Al terminar la reunión, el maestro entra a la sección de minutas en la página web.\par
+2. Presiona el botón que dice ``Nueva minuta''.\par
+3. Anota la fecha del día y un resumen corto de los temas de los que hablaron.\par
+4. En la parte de compromisos, escribe las tareas pendientes, quién las va a hacer (el alumno o el maestro) y para qué fecha deben estar listas.\par
+5. Presiona el botón de guardar.\par
+6. La página web guarda los datos al instante.\par
+7. El alumno puede entrar en cualquier momento a consultar qué tareas tiene pendientes y cuándo entregarlas. \\ \addlinespace
+\textbf{Caminos alternativos} & Si el maestro intenta guardar la minuta dejando espacios en blanco o sin anotar compromisos, la página web no lo deja guardar y le avisa qué datos le faltan. \\ \addlinespace
+\textbf{Regla obligatoria} & \textbf{Datos obligatorios:} Toda minuta debe llevar forzosamente la fecha de la reunión, de qué hablaron y por lo menos una tarea con fecha límite de entrega. \\
+\end{longtable}
+\end{small}
+
+Para entender el proceso de forma visual, en la Figura~\ref{fig:cu03_minutas} se representa el diagrama de cómo el maestro anota los acuerdos y cómo los demás usuarios pueden consultar esa información.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.68\textwidth]{assets/casos_uso/cu03_minutas.png}
+    \caption{Diagrama del Caso de Uso 3: Registro de Minutas de Asesoría.}
+    \label{fig:cu03_minutas}
+\end{figure}
+
+% ----------------------------------------------------------------------
+% CASO DE USO 4: ALERTAS DE INACTIVIDAD
+% ----------------------------------------------------------------------
+\subsection{Caso de Uso 4: Avisos por Inactividad Mayor a 30 Días (CU04)}
+\label{subsec:cu04}
+
+Este caso de uso describe la función que hace la página web de contar los días sin actividad para avisar a los maestros y a la coordinación cuando un estudiante se está quedando atrás y necesita apoyo.
+
+\begin{small}
+\begin{longtable}{p{3.5cm} p{11.5cm}}
+\caption{Descripción del Caso de Uso 4: Avisos de inactividad.} \label{tab:cu04} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endfirsthead
+
+\multicolumn{2}{c}{\tablename\ \thetable\ -- Continuación de la página anterior} \\
+\toprule
+\textbf{Elemento} & \textbf{Detalle descriptivo} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\textbf{Identificador} & CU04 \\ \addlinespace
+\textbf{Nombre} & Detección y aviso de inactividad mayor a 30 días \\ \addlinespace
+\textbf{Participantes} & Página Web (reloj automático), Tutor o Maestro (cuida a sus alumnos), Coordinador (revisa a todos los alumnos). \\ \addlinespace
+\textbf{Propósito} & Avisar a tiempo si un alumno lleva mucho tiempo sin comunicarse o sin entregar avances, para ayudarlo antes de que deje la tesis \parencite{lando2025digital}. \\ \addlinespace
+\textbf{Requisitos previos} & Que los alumnos estén registrados y tengan la fecha de su último trabajo o de su última reunión. \\ \addlinespace
+\textbf{Pasos principales} & 
+1. La página web compara la fecha de hoy con el último día en que el estudiante subió un archivo o tuvo una reunión.\par
+2. La página web cuenta cuántos días han pasado sin registrar nada nuevo.\par
+3. Si la cuenta pasa de los 30 días, la página web le pone una marca de alerta al expediente del estudiante.\par
+4. Cuando el maestro abre su lista de tesistas, ve un aviso junto al nombre del alumno atrasado.\par
+5. Cuando el coordinador abre su pantalla, ve una lista con todos los alumnos que tienen alerta para llamarlos o mandarles un mensaje a tiempo. \\ \addlinespace
+\textbf{Caminos alternativos} & En cuanto el alumno vuelve a subir un trabajo en PDF o el maestro registra una nueva minuta, el contador de días se regresa a cero y el aviso de alerta se apaga automáticamente. \\ \addlinespace
+\textbf{Regla obligatoria} & \textbf{Tiempo límite de 30 días:} El aviso se enciende únicamente cuando el alumno acumula más de 30 días seguidos sin entregar ningún trabajo y sin registrar minutas de asesoría. \\
+\end{longtable}
+\end{small}
+
+De forma gráfica, en la Figura~\ref{fig:cu04_atrasos} se muestra cómo el reloj de la página web cuenta los días y activa la lista de alertas para que los maestros y la coordinación puedan intervenir a tiempo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.68\textwidth]{assets/casos_uso/cu04_atrasos.png}
+    \caption{Diagrama del Caso de Uso 4: Avisos de Alumnos Atrasados.}
+    \label{fig:cu04_atrasos}
+\end{figure}

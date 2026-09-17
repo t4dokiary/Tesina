@@ -1,0 +1,123 @@
+% ======================================================================
+% PREÁMBULO: Tesina de Licenciatura - Configuración Unificada
+% ======================================================================
+
+% --------------------------------------------------
+% 1. Codificación, Fuentes e Idioma
+% --------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% Tipografía formal Times New Roman estándar
+\usepackage{mathptmx}
+
+% --------------------------------------------------
+% 1.1. Color Institucional y Fondos de Portada (DEPENDENCIAS DE PORTADA)
+% --------------------------------------------------
+\usepackage[dvipsnames]{xcolor}
+\definecolor{AzulBUAP}{RGB}{0, 50, 110} % Azul oficial BUAP[cite: 4]
+\usepackage{eso-pic}                     % Permite colocar marcas de agua y líneas de fondo[cite: 4]
+
+% --------------------------------------------------
+% 2. Bibliografía APA 7 (BibLaTeX + Biber)
+% --------------------------------------------------
+\usepackage{csquotes}
+\usepackage[
+  backend=biber,
+  style=apa,
+  language=spanish
+]{biblatex}
+\addbibresource{referencias.bib}
+
+% --------------------------------------------------
+% 3. Geometría de Página
+% --------------------------------------------------
+\usepackage[
+  letterpaper,
+  margin=2.54cm,
+  headheight=15pt,
+  headsep=12pt
+]{geometry}
+
+% --------------------------------------------------
+% 4. Formato de Párrafo e Interlineado
+% --------------------------------------------------
+\usepackage{setspace}
+\doublespacing                         % Interlineado doble APA 7
+\setlength{\parindent}{1.27cm}         % Sangría de primera línea uniforme
+\setlength{\parskip}{0pt}
+\setcounter{secnumdepth}{4}
+
+% --------------------------------------------------
+% 5. Formato de Títulos (APA 7)
+% --------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering}
+  {\chaptertitlename\ \thechapter}
+  {10pt}
+  {\Huge}
+\titlespacing*{\chapter}{0pt}{10pt}{25pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}{0pt}{15pt}{8pt}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\itshape}
+  {\thesubsection}
+  {1em}
+  {}
+
+% --------------------------------------------------
+% 6. Control de Encabezados y Foliación Uniforme
+% --------------------------------------------------
+\usepackage{emptypage}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\rhead{\thepage} % Número siempre fijo en la esquina superior derecha
+
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \rhead{\thepage}%
+}
+
+% --------------------------------------------------
+% 7. Tablas, Flotantes y Figuras
+% --------------------------------------------------
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{array}       
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Teorema}[chapter]
+
+\usepackage{caption}
+\captionsetup{
+  justification=raggedright,
+  singlelinecheck=false,
+  labelfont=bf,
+  font=small
+}
+\usepackage{subcaption}
+
+% --------------------------------------------------
+% 8. Hipervínculos Compatibles con APA 7
+% --------------------------------------------------
+\usepackage[hidelinks]{hyperref}
+
+% Permite que el enlace funcione sin romper la estructura de los paréntesis
+\DeclareFieldFormat{citehyperref}{%
+  \iffieldundef{postnote}
+    {\bibhyperref{#1}}
+    {\bibhyperref{#1}}}

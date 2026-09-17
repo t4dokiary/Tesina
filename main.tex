@@ -1,0 +1,43 @@
+\documentclass[12pt,oneside]{book} 
+
+% Cargamos toda la configuración y paquetes
+\input{assets/preambulo.tex}
+
+\begin{document}
+
+\frontmatter
+
+% 1. Portada Institucional
+\input{assets/portada.tex}
+\cleardoublepage
+
+% 2. Constancia de Visto Bueno (cuando la tengas en su archivo)
+% \input{constancia_vobo.tex}
+% \cleardoublepage
+
+\tableofcontents        % Índice General
+\cleardoublepage
+\listoftables           % Índice de Tablas
+\cleardoublepage
+\listoffigures          % Índice de Figuras
+\cleardoublepage
+
+% ======================================================================
+% CUERPO DE LA TESINA (Inicia numeración arábiga continua: 1, 2, 3...)
+% ======================================================================
+\mainmatter 
+
+% Capítulo 1: Introducción
+\input{capitulos/cap01_introduccion/00_introduccion.tex}
+% Capítulo 2: Marco Teórico y Estado del Arte
+\input{capitulos/cap02_marco_teorico/000_main.tex}
+% Capítulo 3: Análisis y Diseño
+\input{capitulos/cap03_analisis_diseno/00_main.tex}
+
+% ======================================================================
+% BIBLIOGRAFÍA EN FORMATO APA 7
+% ======================================================================
+\nocite{*} 
+\printbibliography[heading=bibintoc, title={Bibliografía}]
+
+\end{document}

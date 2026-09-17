@@ -1,0 +1,44 @@
+\subsection{Objetivos Específicos}
+\label{subsec:obj_especificos}
+
+Para cumplir con el objetivo general, el proyecto se divide en las siguientes etapas y actividades específicas:
+
+\begin{enumerate}
+    \item \textbf{Diseño de accesos y pantallas según el tipo de usuario (Roles):}
+    \begin{itemize}
+        \item Diseñar pantallas sencillas, claras y fáciles de usar para que cualquier persona pueda navegar sin perderse.
+        \item Separar el acceso en tres tipos de cuentas: el estudiante (para subir sus trabajos y revisar tareas), el asesor (para dejar comentarios y calificar acuerdos) y la coordinación (para ver el estado general de todos los alumnos).
+        \item \textit{Restricción:} Por seguridad y privacidad, cada usuario solo podrá ver su propia información; ningún estudiante podrá ver los archivos o minutas de otro compañero.
+    \end{itemize}
+
+    \item \textbf{Módulo de entrega y control de documentos de tesis:}
+    \begin{itemize}
+        \item Permitir que el alumno suba sus entregas a la plataforma para que el profesor las pueda consultar y descargar cuando las vaya a revisar.
+        \item Llevar un registro ordenado que guarde cada versión del documento con su fecha y hora, mostrando un historial claro de los cambios realizados.
+        \item \textit{Restricciones:} 
+        \begin{itemize}
+            \item El sistema solo aceptará archivos en formato PDF para asegurar que el contenido no se desacomode ni se altere.
+            \item Queda prohibido sobreescribir o borrar versiones anteriores; cada nuevo documento se guardará como una versión adicional (por ejemplo: Versión 1, Versión 2) para conservar el historial completo.
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Módulo para el registro y consulta de minutas de asesoría:}
+    \begin{itemize}
+        \item Crear un formulario digital donde el asesor o el alumno puedan registrar rápidamente lo sucedido al terminar cada sesión de trabajo.
+        \item Dejar por escrito los temas que se revisaron, la fecha de la reunión y la lista de acuerdos o tareas pendientes para la siguiente cita.
+        \item \textit{Restricciones:} Toda minuta debe incluir obligatoriamente la fecha de la sesión y al menos un acuerdo o compromiso registrado para poder ser guardada en la página web.
+    \end{itemize}
+
+    \item \textbf{Módulo de fechas y avisos de inactividad para evitar atrasos:}
+    \begin{itemize}
+        \item Monitorear las fechas del sistema calculando de forma automática los días transcurridos desde la última entrega de borrador o desde la última minuta registrada.
+        \item Mostrar avisos visuales claros a los tutores y a la coordinación cuando un estudiante lleve mucho tiempo sin interactuar en el sistema.
+        \item \textit{Restricción:} El sistema marcará un aviso de inactividad únicamente cuando el alumno acumule más de 30 días consecutivos sin subir un avance ni registrar una minuta de asesoría.
+    \end{itemize}
+
+    \item \textbf{Pruebas de funcionamiento del sistema:}
+    \begin{itemize}
+        \item Probar individualmente cada parte de la página web (subida de archivos, llenado de minutas y cálculo de días) para verificar que funcionen sin errores.
+        \item Confirmar con ejemplos reales que los archivos se descarguen bien, que las cuentas respeten sus permisos y que las alertas se activen en las fechas correctas.
+    \end{itemize}
+\end{enumerate}

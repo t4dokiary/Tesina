@@ -1,0 +1,55 @@
+\subsection{Comparación con programas y plataformas existentes (Benchmark)}
+\label{subsec:benchmark}
+
+En las escuelas e instituciones de trabajo ya se utilizan diversas herramientas digitales para coordinar actividades, enviar tareas o compartir archivos; sin embargo, ninguna de ellas fue pensada de forma específica para cubrir las necesidades particulares que exige una tesis de posgrado.
+
+A continuación, se analizan las herramientas más conocidas divididas en tres grupos: plataformas comerciales con costo de licencia, aplicaciones de uso libre o gratuito, y proyectos de código abierto disponibles en GitHub.
+
+\subsubsection{Plataformas comerciales de pago}
+\begin{itemize}
+    \item \textbf{Ellucian Banner \parencite{ellucian2024banner}:} Es un sistema integral que usan muchas universidades para administrar inscripciones, pagos y las calificaciones finales de los estudiantes. Aunque es muy completo para el control escolar de toda la escuela, no cuenta con apartados para el trato diario entre asesor y tesista, no organiza las versiones de borradores ni permite registrar minutas de asesoría.
+    \item \textbf{Blackboard Learn \parencite{anthology2024blackboard}:} Es una plataforma para impartir cursos y materias semestrales. Cuenta con buzones de tareas, foros y exámenes en línea. Sin embargo, su estructura está pensada para materias convencionales con fechas de examen fijas y no para el desarrollo individual y flexible de una tesis de posgrado.
+    \item \textbf{Turnitin Feedback Studio \parencite{turnitin2024feedback}:} Es un programa especializado en revisar documentos para detectar coincidencias de texto y prevenir el plagio escolar. Si bien permite que los profesores anoten observaciones sobre los archivos, no sirve para llevar acuerdos de reuniones, no vigila los periodos de inactividad ni administra las etapas formales del posgrado.
+\end{itemize}
+
+\subsubsection{Herramientas colaborativas y gratuitas}
+\begin{itemize}
+    \item \textbf{Google Workspace for Education \parencite{google2024workspace}:} Incluye servicios de almacenamiento y edición en línea como Google Drive y Google Classroom. Permite guardar documentos y trabajar en equipo, pero al tratarse de carpetas compartidas existe el riesgo de que los archivos se sobreescriban, se muevan de lugar o se eliminen por error. Además, no cuenta con un temporizador que alerte cuando un alumno lleva más de 30 días sin reportarse.
+    \item \textbf{Trello \parencite{atlassian2024trello} y Asana \parencite{asana2024work}:} Son aplicaciones para organizar tareas pendientes mediante tableros visuales de tarjetas. Aunque facilitan ver qué falta por hacer, no tienen valor escolar oficial, no exigen la entrega exclusiva en formato PDF para cuidar la presentación del borrador y no permiten que la coordinación supervise el avance conjunto de todos los tesistas de la facultad.
+    \item \textbf{Notion \parencite{notion2024labs}:} Es una aplicación flexible de notas y tablas de pendientes. Permite armar formatos de minutas de manera manual, pero depende por completo de que el alumno o el maestro recuerden llenar la información sin olvidar tareas, ya que no cuenta con perfiles de acceso separados para la escuela ni avisa automáticamente a la coordinación cuando un estudiante se queda inactivo.
+\end{itemize}
+
+\subsubsection{Soluciones de código abierto y repositorios en GitHub}
+\begin{itemize}
+    \item \textbf{Moodle \parencite{moodle2024lms}:} Es un sistema de código abierto ampliamente utilizado para cursos en línea. Permite subir tareas semanales con calificación, pero el desarrollo de una tesis no funciona como una materia normal, por lo que su estructura no incluye un apartado específico para formalizar minutas con compromisos obligatorios.
+    \item \textbf{DSpace \parencite{duraspace2024dspace}:} Es una plataforma diseñada para archivar y resguardar en bibliotecas digitales los trabajos y proyectos que ya fueron terminados y aprobados. No obstante, no sirve para dar seguimiento durante la redacción ni ayuda a revisar los avances del día a día entre el maestro y el alumno.
+    \item \textbf{Repositorio de gestión de tesis en GitHub \parencite{singh2023thesisrepo}:} En la plataforma GitHub existen proyectos de código abierto orientados a registrar temas de tesis e inscribir jurados en facultades de informática. Aunque demuestran la utilidad de centralizar estos datos en internet, su alcance suele limitarse a la inscripción inicial y no resguardan el historial inmutable de archivos en PDF ni cuentan con alertas por días de inactividad.
+\end{itemize}
+
+Para observar de forma visual estas diferencias, en la Tabla \ref{tab:benchmark} se comparan las plataformas revisadas frente a las tres funciones principales que atiende nuestra página web.
+
+\begin{table}[htbp]
+\centering
+\small
+\singlespacing
+\caption{Comparación entre plataformas existentes y la página web propuesta.}
+\label{tab:benchmark}
+\begin{tabular}{p{3.4cm} c c c c c}
+\toprule
+\textbf{Plataforma} & \textbf{Modelo} & \textbf{Historial PDF} & \textbf{Minutas} & \textbf{Aviso $>$30 d} & \textbf{Enfoque tesis} \\
+\midrule
+Ellucian Banner & Comercial & No & No & No & No \\
+Blackboard Learn & Comercial & No & No & No & No \\
+Turnitin & Comercial & Parcial & No & No & Parcial \\
+Google Classroom & Gratuito & No & No & No & No \\
+Trello / Asana & Gratuito & No & No & No & No \\
+Notion & Gratuito & No & Parcial & No & No \\
+Moodle & Código Abierto & No & No & No & No \\
+DSpace & Código Abierto & Sí & No & No & No \\
+GitHub (\textit{thesis-mgmt}) & Código Abierto & Parcial & No & No & Parcial \\
+\textbf{Página web propuesta} & \textbf{Propia} & \textbf{Sí} & \textbf{Sí} & \textbf{Sí} & \textbf{Sí} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Esta revisión demuestra que las herramientas existentes se orientan a impartir materias masivas, registrar trámites de oficina o archivar proyectos ya finalizados, pero dejan desatendido el acompañamiento semanal de la tesis. La página web que se propone cubre este vacío concentrando tres funciones claras: guardar los borradores en PDF sin borrar entregas previas, registrar formalmente los acuerdos en minutas digitales y emitir avisos automáticos de alerta si el estudiante pasa más de 30 días sin interactuar.
