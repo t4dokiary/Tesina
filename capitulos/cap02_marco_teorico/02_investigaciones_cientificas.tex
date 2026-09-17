@@ -1,38 +1,35 @@
 \subsection{Revisión de investigaciones científicas similares}
 \label{subsec:investigaciones_cientificas}
 
-Varios investigadores han diseñado páginas web y sistemas digitales para evitar que los estudiantes se atrasen al realizar su tesis de posgrado y para que la comunicación con sus asesores sea más ordenada.
+Diversos investigadores han diseñado y analizado sistemas tecnológicos para ayudar a que los alumnos no se atrasen al realizar su tesis y para que la comunicación con sus asesores sea más ordenada.
 
-En primer lugar, \textcite{sim2023technology} explican que cuando las asesorías se dan solo por medios informales como WhatsApp o correos personales, los acuerdos y tareas se olvidan con facilidad. Por esta razón, afirman que una plataforma web ayuda a mantener un contacto continuo y organizado entre ambas partes.
+En primer lugar, \textcite{sim2023technology} explican que cuando las asesorías se dan solo por medios informales como WhatsApp o correos personales, los acuerdos y tareas se olvidan con facilidad. Por esta razón, demuestran que una plataforma web ayuda a mantener un contacto continuo y estructurado entre el estudiante y su director de tesis.
 
-Por otra parte, \textcite{ali2024thesis} desarrollaron un sistema web para registrar los temas de tesis y ordenar las entregas de avances de los estudiantes. Su investigación demostró que reunir todos los archivos en un solo lugar digital evita que los trabajos se extravíen en correos o memorias USB.
+Por otra parte, \textcite{ali2024thesis} desarrollaron un sistema web para registrar temas de tesis y ordenar las entregas de avances. Su investigación demostró que reunir todos los archivos en un solo lugar digital evita que los trabajos se extravíen entre correos o memorias USB.
 
-De igual manera, \textcite{sayeh2021web} puso a prueba una página web para supervisar los avances de tesis en una facultad de computación. Su trabajo confirmó que registrar de forma ordenada cada borrador entregado permite que los profesores conozcan el avance real de cada tesista sin necesidad de imprimir hojas de papel.
+De igual manera, \textcite{sayeh2021web} puso a prueba una plataforma para supervisar avances de tesis en una facultad de computación. Su trabajo confirmó que registrar de forma ordenada cada borrador entregado permite que los profesores conozcan el avance real de cada tesista sin necesidad de imprimir hojas de papel.
 
-En cuanto al cuidado de los documentos, \textcite{mebtouche2025national} señala que las universidades requieren plataformas digitales seguras para resguardar los archivos de las investigaciones, evitando que los trabajos se borren o se pierdan con el paso de los años.
+Asimismo, \textcite{bitchener2014supervising} y \textcite{lee2012successful} analizaron la relación de tutoría en el posgrado, concluyendo que la mayor causa de frustración y atraso en los tesistas es la falta de acuerdos claros por escrito y la desorganización en las correcciones del documento, lo que confirma la necesidad de registrar minutas de trabajo en cada sesión.
 
-Por último, \textcite{lando2025digital} analizaron diversas plataformas de posgrado y encontraron que muchos alumnos abandonan la tesis porque el sistema no cuenta con avisos de tiempo. Si un estudiante pasa varias semanas sin entregar nada y nadie se entera a tiempo, es muy probable que termine desertando del programa.
+En cuanto al cuidado y resguardo de los documentos, \textcite{mebtouche2025national} señala que las universidades requieren plataformas digitales seguras para proteger los archivos de investigación, evitando que los trabajos se borren o se pierdan con el paso de los semestres.
 
-En la Tabla \ref{tab:literatura_cientifica} se comparan estas investigaciones señalando qué aporta cada una y qué funciones faltaron por resolver frente a lo que propone este proyecto.
+Por último, \textcite{lando2025digital} analizaron diversas plataformas de posgrado y encontraron que muchos alumnos abandonan la tesis porque el sistema no cuenta con avisos de tiempo. Si un estudiante pasa varias semanas sin entregar avances y nadie se entera a tiempo, el riesgo de deserción aumenta de forma drástica.
 
-\begin{table}[!ht]
+En la Tabla \ref{tab:literatura_cientifica} se comparan estas investigaciones señalando su aporte y qué aspectos dejaron sin resolver frente a lo que propone este proyecto.
+
+\begin{table}[htbp]
 \centering
 \small
 \singlespacing
 \caption{Comparación de investigaciones científicas analizadas.}
 \label{tab:literatura_cientifica}
-\begin{tabular}{
-  p{\dimexpr 0.22\linewidth - 2\tabcolsep\relax}
-  p{\dimexpr 0.24\linewidth - 2\tabcolsep\relax}
-  p{\dimexpr 0.26\linewidth - 2\tabcolsep\relax}
-  p{\dimexpr 0.20\linewidth - 2\tabcolsep\relax}
-}
+\begin{tabular}{p{0.22\linewidth} p{0.24\linewidth} p{0.26\linewidth} p{0.20\linewidth}}
 \toprule
 \textbf{Investigación} & \textbf{¿Qué propone?} & \textbf{Aporte importante} & \textbf{¿Qué le faltó resolver?} \\
 \midrule
 \textcite{sim2023technology} & 
 Uso de páginas web para asesorías. & 
-Demuestra que el contacto continuo evita que el alumno se quede rezagado. & 
+Demuestra que el contacto continuo evita el rezago del alumno. & 
 No define reglas para guardar versiones sin sobreescribir archivos. \\
 \addlinespace
 \textcite{ali2024thesis} & 
@@ -45,15 +42,20 @@ Sistema de seguimiento en computación. &
 Permite revisar el avance de tesis sin requerir hojas de papel. & 
 No cuenta con un reloj automático que mande alertas de inactividad. \\
 \addlinespace
+\textcite{lee2012successful} & 
+Modelo de supervisión doctoral y de maestría. & 
+Comprueba que fijar metas por escrito en cada cita da certeza al alumno. & 
+Es un marco pedagógico; no propone una herramienta de software. \\
+\addlinespace
 \textcite{mebtouche2025national} & 
 Plataforma escolar para resguardar tesis. & 
 Organiza y protege los documentos finales para que no se pierdan. & 
-Solo guarda tesis concluidas; no ayuda en las revisiones del día a día. \\
+Solo guarda tesis ya terminadas; no ayuda en la revisión semanal. \\
 \addlinespace
 \textcite{lando2025digital} & 
 Estudio sobre herramientas de asesoría. & 
-Comprueba que la falta de avisos de tiempo causa el abandono escolar. & 
-Es un artículo de análisis teórico, no crearon el software. \\
+Demuestra que la falta de avisos de tiempo causa el abandono escolar. & 
+Es un artículo de análisis teórico, no implementaron el software. \\
 \bottomrule
 \end{tabular}
 \end{table}
