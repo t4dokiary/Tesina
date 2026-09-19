@@ -1,45 +1,81 @@
 \section{Diseño de la Base de Datos}
 \label{sec:diseno_bd}
 
-En este apartado se explica cómo se guarda y se organiza la información dentro de la página web usando una base de datos relacional \parencite{silberschatz2014}. Toda la información se reparte en tablas conectadas entre sí para que nada se pierda ni se revuelva, asegurando que las cuentas funcionen bien, los archivos en PDF se guarden por versiones sin borrar nada viejo, las reuniones queden registradas con sus tareas y el sistema avise si alguien pasa más de un mes sin trabajar \parencite{sim2023technology}.
+En esta sección se presenta el modelo relacional de la plataforma web \parencite{silberschatz2014}. Con el propósito de mantener consistencia con los requerimientos funcionales del sistema, la estructura de datos se organiza a partir de los casos de uso descritos previamente (CU01 al CU04), delimitando las entidades principales, sus atributos elementales y sus relaciones de cardinalidad.
 
-\subsection{Descripción del Proyecto y Elementos de la Base de Datos}
-\label{subsec:descripcion_bd}
+\subsection{Estructura de Entidades y Atributos}
+\label{subsec:tablas_atributos}
 
-Para entender el diagrama del sistema, la información se organiza en tres cosas muy sencillas: las tablas principales que representan a los elementos del sistema (rectángulos), los datos específicos que guarda cada una (óvalos o bolitas) y las conexiones que explican cómo se relacionan entre sí (rombos) \parencite{silberschatz2014}.
+A continuación, se describen las entidades que conforman el esquema de la base de datos y su correspondencia operativa con cada caso de uso:
 
-\subsubsection{Tablas y qué datos guarda cada una}
+\begin{enumerate}
+    \item \textbf{Tabla \texttt{usuario} (Base del Caso de Uso CU01 -- Iniciar Sesión):}
+    Centraliza las cuentas de acceso al sistema \parencite{ferraiolo2007}.
+    \begin{itemize}
+        \item \textbf{Atributos:} \underline{\texttt{id\_usuario}} (clave primaria), \texttt{correo\_institucional}, \texttt{contrasena}, \texttt{nombre\_completo} (\texttt{primer\_nombre}, \texttt{segundo\_nombre}, \texttt{apellido\_paterno}, \texttt{apellido\_materno}), \texttt{telefono}, \texttt{fecha\_registro} y \texttt{cuenta\_activa}.
+        \item \textbf{Especialización por roles:} Se subdivide en tres perfiles: \texttt{alumno} (\texttt{matricula}), \texttt{asesor} (\texttt{numero\_empleado}, \texttt{grado\_academico}) y \texttt{coordinador} (\texttt{cubiculo\_oficina}, \texttt{telefono\_oficina}).
+        \item \textbf{Soporte a casos de uso:} Provee la autenticación de identidad en el \textbf{CU01} y define los privilegios de navegación de cada usuario.
+    \end{itemize}
 
-La base de datos empieza con la tabla llamada \textit{usuario}, que sirve para controlar el acceso de todas las personas a la página web. Esta tabla utiliza como dato principal el \underline{id\_usuario}, que es un número único para cada cuenta que no se repite. Además, guarda datos básicos como el \textit{correo\_institucional} para iniciar sesión, la \textit{contrasena}, la \textit{fecha\_registro} y la casilla de \textit{cuenta\_activa} para saber si la persona puede entrar o está dada de baja. El nombre de la persona se guarda en un dato llamado \textit{nombre\_completo}, el cual se divide en primer nombre, segundo nombre, apellido paterno y apellido materno para que sea fácil ordenar las listas por orden alfabético. También incluye el dato de \textit{telefono}, que se dibuja con doble óvalo porque una persona puede registrar más de un número para que la localicen. Como no todos hacen lo mismo en la página web, esta cuenta general se divide en tres tipos de usuario: el \textit{alumno}, que guarda su matrícula escolar; el \textit{asesor}, que guarda su número de maestro y su grado de estudios; y el \textit{coordinador}, que guarda el número de su oficina y su teléfono de atención.
+    \item \textbf{Tabla \texttt{proyecto\_tesis} (Expediente Central -- CU02, CU03 y CU04):}
+    Representa el expediente general del trabajo recepcional en el posgrado.
+    \begin{itemize}
+        \item \textbf{Atributos:} \underline{\texttt{id\_proyecto}} (clave primaria), \texttt{titulo\_tesis}, \texttt{linea\_investigacion}, \texttt{fecha\_inicio}, \texttt{fecha\_ultimo\_avance}, \texttt{estado\_proyecto} y \texttt{dias\_inactividad} (atributo derivado).
+        \item \textbf{Soporte a casos de uso:} Vincula formalmente al alumno con su asesor titular y almacena la fecha del último movimiento registrada por el sistema para la detección de inactividad (\textbf{CU04}).
+    \end{itemize}
 
-La siguiente tabla es \textit{proyecto\_tesis}, que funciona como el expediente principal del trabajo de investigación. Tiene su propio identificador llamado \underline{id\_proyecto} y guarda datos como el \textit{titulo\_tesis}, el tema o \textit{linea\_investigacion}, la \textit{fecha\_inicio}, la \textit{fecha\_ultimo\_avance} y cómo va el trabajo en el \textit{estado\_proyecto}. En esta tabla se incluye un dato especial llamado \textit{dias\_inactividad}, que en el dibujo lleva una bolita con línea punteada porque nadie lo escribe a mano; la página web hace una resta automática entre la fecha de hoy y la fecha del último avance para saber cuántos días lleva el alumno sin entregar nada.
+    \item \textbf{Tabla \texttt{entregable\_version} (Soporte al Caso de Uso CU02 -- Borradores de Tesis):}
+    Entidad dependiente que almacena los documentos de avance cargados por el tesista.
+    \begin{itemize}
+        \item \textbf{Atributos:} \underline{\texttt{numero\_version}} (clave parcial), \texttt{ruta\_archivo\_pdf}, \texttt{fecha\_hora\_subida}, \texttt{comentario\_alumno} y \texttt{retroalimentacion\_asesor}.
+        \item \textbf{Soporte a casos de uso:} Da cumplimiento a las restricciones del \textbf{CU02}, garantizando un registro correlativo de archivos en formato PDF sin sobreescritura de borradores previos \parencite{chacon2014progit}.
+    \end{itemize}
 
-Para guardar los documentos del estudiante se utiliza la tabla \textit{entregable\_version}. En el dibujo se coloca con un rectángulo doble porque es una tabla dependiente; es decir, no tiene sentido guardar un archivo suelto si no pertenece a una tesis ya registrada. Esta tabla usa el dato \underline{numero\_version} para enumerar las entregas (como versión 1, versión 2 o versión 3), logrando que cada trabajo nuevo se guarde por separado sin borrar los archivos anteriores. También guarda la \textit{ruta\_archivo\_pdf} donde quedó el documento, la \textit{fecha\_hora\_subida}, una nota escrita por el estudiante en \textit{comentario\_alumno} y las correcciones que le escribe el maestro en \textit{retroalimentacion\_asesor}.
+    \item \textbf{Tabla \texttt{minutas\_asesoria} (Soporte al Caso de Uso CU03 -- Registro de Asesorías):}
+    Almacena las actas de trabajo levantadas tras concluir cada sesión de tutoría.
+    \begin{itemize}
+        \item \textbf{Atributos:} \underline{\texttt{id\_minuta}} (clave primaria), \texttt{fecha\_reunion}, \texttt{modalidad} (presencial o virtual), \texttt{resumen\_temas} y \texttt{fecha\_registro}.
+        \item \textbf{Soporte a casos de uso:} Registra formalmente los acuerdos tomados entre el docente y el alumno conforme a los pasos descritos en el \textbf{CU03}.
+    \end{itemize}
 
-Para llevar el control de las citas de asesoría se tiene la tabla \textit{minutas\_asesoria}, que se identifica con el número \underline{id\_minuta}. Aquí se guarda la \textit{fecha\_reunion}, si la cita fue en persona o por internet en \textit{modalidad}, un resumen de lo que platicaron en \textit{resumen\_temas} y el día en que se capturó la información en \textit{fecha\_registro}.
+    \item \textbf{Tabla \texttt{compromiso\_acuerdo} (Detalle de Tareas del CU03):}
+    Entidad dependiente que desglosa las actividades acordadas en cada reunión.
+    \begin{itemize}
+        \item \textbf{Atributos:} \underline{\texttt{numero\_acuerdo}} (clave parcial), \texttt{descripcion\_tarea}, \texttt{responsable} (alumno o asesor), \texttt{fecha\_limite} y \texttt{estado\_cumplido}.
+        \item \textbf{Soporte a casos de uso:} Implementa la regla del \textbf{CU03} que obliga a asociar al menos un compromiso con fecha límite por cada minuta generada.
+    \end{itemize}
 
-Pegada a cada minuta se encuentra la tabla \textit{compromiso\_acuerdo}, que también se dibuja con recuadro doble porque las tareas solo existen si se acordaron en una reunión previa. Se organiza mediante el número de tarea \underline{numero\_acuerdo} y guarda qué hay que hacer en \textit{descripcion\_tarea}, a quién le toca cumplirla en \textit{responsable} (si al alumno o al maestro), el día máximo de entrega en \textit{fecha\_limite} y una casilla de \textit{estado\_cumplido} para marcar si ya se entregó o si sigue pendiente.
+    \item \textbf{Tabla \texttt{alerta\_rezago} (Soporte al Caso de Uso CU04 -- Avisos de Inactividad):}
+    Registra los avisos generados por el cronómetro del sistema.
+    \begin{itemize}
+        \item \textbf{Atributos:} \underline{\texttt{id\_alerta}} (clave primaria), \texttt{fecha\_deteccion}, \texttt{dias\_acumulados} y \texttt{estado\_alerta}.
+        \item \textbf{Soporte a casos de uso:} Almacena los eventos de notificación preventiva del \textbf{CU04} cuando un alumno acumula más de 30 días continuos sin avances documentales ni minutas.
+    \end{itemize}
+\end{enumerate}
 
-Por último, se encuentra la tabla \textit{alerta\_rezago}, que se encarga de guardar los avisos automáticos que manda la página web. Cuenta con su número de aviso \underline{id\_alerta} y guarda el día del aviso en \textit{fecha\_deteccion}, cuántos días sin avance se contaron en \textit{dias\_acumulados} y si el aviso ya fue atendido por el profesor en \textit{estado\_alerta}.
+\subsection{Relaciones y Cardinalidades del Sistema}
+\label{subsec:relaciones_bd}
 
-\subsubsection{Cómo se conectan las tablas y cuántos datos abarcan (Cardinalidades)}
+Las relaciones entre las entidades del modelo garantizan la integridad referencial del expediente de tesis \parencite{silberschatz2014}:
 
-Las líneas y los rombos del dibujo muestran cómo se comunica una tabla con otra y cuántos registros puede tener cada conexión. La tabla general de \textit{usuario} se conecta con cada tipo de cuenta (\textit{alumno}, \textit{asesor} y \textit{coordinador}) mediante una relación de uno a uno ($1:1$), lo que significa que cada cuenta de la página web le pertenece exactamente a una sola persona con su perfil correspondiente.
+\begin{itemize}
+    \item \textbf{alumno -- proyecto\_tesis ($1:1$):} Cada estudiante inscrito desarrolla un único proyecto de tesis activo.
+    \item \textbf{asesor -- proyecto\_tesis ($1:N$):} Un docente puede dirigir varios proyectos, correspondiendo a cada tesis un único asesor titular.
+    \item \textbf{coordinador -- proyecto\_tesis ($1:N$):} La coordinación de posgrado supervisa el universo total de tesis registradas sin ser titular directo de las mismas.
+    \item \textbf{proyecto\_tesis -- entregable\_version ($1:N$):} Cada expediente acumula un historial ordenado de versiones en formato PDF (\textbf{CU02}).
+    \item \textbf{proyecto\_tesis -- minutas\_asesoria ($1:N$):} El proyecto registra cronológicamente las minutas generadas a lo largo de las sesiones (\textbf{CU03}).
+    \item \textbf{minutas\_asesoria -- compromiso\_acuerdo ($1:N$):} Toda minuta contiene una o múltiples tareas con responsable y fecha límite fijada (\textbf{CU03}).
+    \item \textbf{proyecto\_tesis -- alerta\_rezago ($1:N$):} Cada trabajo genera registros de advertencia automáticos al superar el umbral de los 30 días de inactividad (\textbf{CU04}). 
+\end{itemize}
 
-A partir de ahí, el \textit{alumno} se une con \textit{proyecto\_tesis} mediante la acción Desarrolla con una relación de uno a uno ($1:1$). Esto indica que un estudiante solo puede tener una tesis activa en la página web y que cada tesis le pertenece a un solo alumno. En cambio, el \textit{asesor} se conecta con \textit{proyecto\_tesis} con la acción Dirige en una relación de uno a muchos ($1:N$), porque un profesor puede asesorar a varios alumnos al mismo tiempo, pero cada trabajo de tesis tiene a un solo maestro titular a cargo. Por su parte, el \textit{coordinador} se conecta con la tesis mediante la acción Supervisa ($1:N$), ya que la coordinación tiene permiso de entrar a revisar todos los proyectos registrados en la escuela sin ser el director directo de ninguno de ellos.
-
-En cuanto al manejo de los trabajos y documentos, la tabla \textit{proyecto\_tesis} se conecta con \textit{entregable\_version} a través del rombo doble Guarda versiones ($1:N$). Esto significa que a lo largo de los meses una tesis va juntando muchos borradores en PDF, pero cada archivo pertenece estrictamente a ese trabajo. De la misma forma, el proyecto se conecta con \textit{minutas\_asesoria} mediante la acción Registra ($1:N$), acumulando todas las juntas que se realicen durante el posgrado. Cada minuta se conecta a su vez con la tabla dependiente \textit{compromiso\_acuerdo} mediante el rombo doble Contiene tareas ($1:N$), lo que asegura que de cada reunión salgan una o varias tareas obligatorias por cumplir. Para terminar, la tesis se conecta con \textit{alerta\_rezago} con la acción Dispara aviso ($1:N$), lo que permite que el sistema guarde una alerta cada vez que el reloj automático note que el estudiante lleva más de 30 días seguidos sin registrar avances ni minutas.
-
-\clearpage
-
-\subsection{Diagrama Entidad--Relación}
+\subsection{Diagrama Entidad--Relación (ER)}
 \label{subsec:diagrama_eer}
 
-En la Figura~\ref{fig:diagrama_eer} se muestra el dibujo completo de la base de datos, donde se aprecian las tablas normales, las tablas dependientes con doble línea, los datos con sus diferentes tipos de bolitas y los números que indican cómo se unen entre sí.
+En la Figura~\ref{fig:diagrama_eer} se ilustra el esquema gráfico del modelo de datos, donde se representan las entidades, atributos simples, compuestos y derivados, así como las relaciones descritas.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\linewidth]{assets/database/db-MER.jpg}
-    \caption{Diagrama Entidad--Relación Extendido de la página web para seguimiento de tesis.}
+    \includegraphics[width=0.85\linewidth]{assets/database/db-MER.jpg}
+    \caption{Diagrama Entidad--Relación (ER) de la página web para seguimiento de tesis.}
     \label{fig:diagrama_eer}
 \end{figure}
