@@ -1,25 +1,25 @@
 \subsection{Esquema y Diagrama Relacional Resultante}
-Una vez aplicadas las tres formas normales, el diagrama conceptual se convierte en un modelo relacional[cite: 1, 2]. En este paso, las entidades pasan a ser tablas reales compuestas por filas y columnas, donde las relaciones entre ellas se enlazan mediante identificadores o llaves[cite: 1, 3].
+Una vez aplicadas las tres formas normales, el diagrama conceptual se convierte en un modelo relacional. En este paso, las entidades pasan a ser tablas reales compuestas por filas y columnas, donde las relaciones entre ellas se enlazan mediante identificadores o llaves.
 
 \subsubsection{Estructura de las tablas y llaves}
-Para que el sistema entienda cómo se conectan los datos sin revolver información, se definen dos tipos de llaves[cite: 1, 3]:
+Para que el sistema entienda cómo se conectan los datos sin revolver información, se definen dos tipos de llaves:
 \begin{itemize}
-    \item \textbf{Llave Primaria (PK):} Es el identificador único e irrepetible de cada fila en una tabla (como la matrícula de un alumno o el número de folio de un trámite)[cite: 1, 3].
-    \item \textbf{Llave Foránea (FK):} Es un dato que se copia de una tabla a otra para unirlas; sirve como un enlace o puente para saber a quién le pertenece cada registro[cite: 1, 3].
+    \item \textbf{Llave Primaria (PK):} Es el identificador único e irrepetible de cada fila en una tabla (como la matrícula de un alumno o el número de folio de un trámite).
+    \item \textbf{Llave Foránea (FK):} Es un dato que se copia de una tabla a otra para unirlas; sirve como un enlace o puente para saber a quién le pertenece cada registro.
 \end{itemize}
 
-A partir de estas reglas, el sistema organiza la información en las siguientes tablas principales[cite: 1, 2]:
+A partir de estas reglas, el sistema organiza la información en las siguientes tablas principales:
 \begin{enumerate}
-    \item \textbf{\texttt{persona}:} Guarda los datos personales elementales (\texttt{id\_persona}, \texttt{primer\_nombre}, \texttt{segundo\_nombre}, \texttt{apellido\_paterno} y \texttt{apellido\_materno})[cite: 1, 2].
-    \item \textbf{\texttt{telefono} y \texttt{email}:} Tablas de contacto enlazadas a la persona mediante la llave foránea \texttt{id\_persona}, permitiendo registrar múltiples teléfonos o correos sin duplicar filas[cite: 1, 2].
-    \item \textbf{\texttt{cuenta} y \texttt{rol}:} \texttt{cuenta} guarda las credenciales (\texttt{contrasena}, \texttt{fecha\_registro}, \texttt{cuenta\_activa}) vinculadas a la persona[cite: 2]. A su vez, se enlaza mediante \texttt{id\_rol} con la tabla \texttt{rol} para definir si el usuario es alumno, asesor o coordinador[cite: 1, 2].
-    \item \textbf{\texttt{proyecto\_tesis}:} Es el expediente central que guarda los datos del trabajo de titulación (\texttt{titulo\_tesis}, \texttt{linea\_investigacion}, \texttt{fecha\_inicio}, \texttt{estado\_proyecto})[cite: 1, 2]. Se conecta con las personas correspondientes para saber quién es el estudiante y quién es el director o asesor[cite: 1, 2].
-    \item \textbf{\texttt{entregable\_version}:} Almacena cada documento PDF (\texttt{ruta\_archivo\_pdf}, \texttt{fecha\_hora\_subida}, comentarios y revisiones)[cite: 1, 2]. Su llave se compone por el proyecto al que pertenece y su \texttt{numero\_version}, garantizando que ninguna versión previa se sobreescriba[cite: 1, 2].
-    \item \textbf{\texttt{minutas\_asesoria} y \texttt{compromiso\_acuerdo}:} \texttt{minutas\_asesoria} registra los acuerdos de cada sesión enlazados al proyecto[cite: 1, 2]. La tabla \texttt{compromiso\_acuerdo} desglosa las tareas individuales fijadas en esa reunión, indicando el responsable y la fecha límite[cite: 1, 2].
-    \item \textbf{\texttt{alerta\_rezago}:} Registra los avisos generados automáticamente cuando se detectan más de 30 días de inactividad, enlazándose a la tesis mediante \texttt{id\_proyecto}[cite: 1, 2].
+    \item \textbf{\texttt{persona}:} Guarda los datos personales elementales (\texttt{id\_persona}, \texttt{primer\_nombre}, \texttt{segundo\_nombre}, \texttt{apellido\_paterno} y \texttt{apellido\_materno}).
+    \item \textbf{\texttt{telefono} y \texttt{email}:} Tablas de contacto enlazadas a la persona mediante la llave foránea \texttt{id\_persona}, permitiendo registrar múltiples teléfonos o correos sin duplicar filas.
+    \item \textbf{\texttt{cuenta} y \texttt{rol}:} \texttt{cuenta} guarda las credenciales (\texttt{contrasena}, \texttt{fecha\_registro}, \texttt{cuenta\_activa}) vinculadas a la persona. A su vez, se enlaza mediante \texttt{id\_rol} con la tabla \texttt{rol} para definir si el usuario es alumno, asesor o coordinador.
+    \item \textbf{\texttt{proyecto\_tesis}:} Es el expediente central que guarda los datos del trabajo de titulación (\texttt{titulo\_tesis}, \texttt{linea\_investigacion}, \texttt{fecha\_inicio}, \texttt{estado\_proyecto}). Se conecta con las personas correspondientes para saber quién es el estudiante y quién es el director o asesor.
+    \item \textbf{\texttt{entregable\_version}:} Almacena cada documento PDF (\texttt{ruta\_archivo\_pdf}, \texttt{fecha\_hora\_subida}, comentarios y revisiones). Su llave se compone por el proyecto al que pertenece y su \texttt{numero\_version}, garantizando que ninguna versión previa se sobreescriba.
+    \item \textbf{\texttt{minutas\_asesoria} y \texttt{compromiso\_acuerdo}:} \texttt{minutas\_asesoria} registra los acuerdos de cada sesión enlazados al proyecto. La tabla \texttt{compromiso\_acuerdo} desglosa las tareas individuales fijadas en esa reunión, indicando el responsable y la fecha límite.
+    \item \textbf{\texttt{alerta\_rezago}:} Registra los avisos generados automáticamente cuando se detectan más de 30 días de inactividad, enlazándose a la tesis mediante \texttt{id\_proyecto}.
 \end{enumerate}
 
-En la Figura~\ref{fig:diagrama_relacional} se representa el diagrama relacional completo de la base de datos, mostrando la estructura final de tablas, llaves primarias, llaves foráneas y sus conexiones lógicas[cite: 1, 3].
+En la Figura~\ref{fig:diagrama_relacional} se representa el diagrama relacional completo de la base de datos, mostrando la estructura final de tablas, llaves primarias, llaves foráneas y sus conexiones lógicas.
 
 \begin{figure}[htbp]
     \centering
