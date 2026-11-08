@@ -1,16 +1,52 @@
 \subsection{Conceptos de trabajo del sistema}
 \label{subsec:conceptos_trabajo}
 
-En este apartado se detallan las reglas operativas con las que trabaja la página web para evitar la pérdida de archivos y asegurar que los acuerdos se cumplan puntualmente.
+En este apartado se explican las reglas prácticas con las que opera la página web para resolver el desorden en la entrega de trabajos, evitar la pérdida de documentos y asegurar que las tareas acordadas entre el alumno y el asesor se cumplan a tiempo.
 
-\subsubsection{Control de versiones de documentos}
-El control de versiones consiste en guardar y ordenar copias numeradas de un mismo archivo (Versión 1, Versión 2, etc.) cada vez que se le agregan avances o correcciones \parencite{chacon2014progit}. En la página web desarrollada se aplica una regla obligatoria de preservación: ninguna entrega puede sobreescribir ni borrar los archivos pasados. Gracias a esto, tanto el alumno como el asesor pueden consultar en cualquier momento los borradores anteriores para revisar comentarios previos sin perder información.
+\subsubsection{Control de versiones inmutable de documentos}
+El control de versiones consiste en guardar y numerar de forma consecutiva cada entrega de un mismo trabajo (Versión 1, Versión 2, Versión 3, etcétera) a medida que el estudiante avanza o aplica correcciones \parencite{chacon2014progit}. 
 
-\subsubsection{Uso exclusivo de archivos en formato PDF}
-El formato PDF (\textit{Portable Document Format}) es un estándar internacional formalizado mediante la norma técnica ISO 32000-2 \parencite{iso32000}. La página web solicita que los borradores se suban exclusivamente en este formato porque asegura que los textos, tipos de letra, figuras, fórmulas matemáticas y tablas se vean exactamente igual en cualquier computadora, teléfono o sistema operativo, evitando que el documento se mueva de lugar como sucede frecuentemente en procesadores editables.
+Para entender su importancia, conviene compararlo con un cuaderno escolar tradicional: si un alumno se equivoca y borra con corrector una página entera, pierde para siempre las notas y observaciones que su maestro le había escrito previamente. En la página web desarrollada se aplica una regla estricta: \textbf{queda prohibido borrar o sobreescribir archivos pasados}. Cada vez que el tesista entrega un nuevo borrador, el sistema lo almacena en una casilla independiente sin tocar los documentos anteriores. Esto ofrece tres beneficios inmediatos:
+\begin{itemize}
+    \item \textbf{Historial transparente:} Tanto el alumno como el asesor y la coordinación pueden revisar en cualquier momento cómo fue evolucionando la redacción desde el primer borrador hasta el documento final.
+    \item \textbf{Cero confusiones de archivos:} Se elimina el problema clásico de no saber cuál archivo es el más reciente en el correo electrónico o de guardar documentos con nombres confusos como \texttt{tesis\_final\_v2\_corregida\_ahora\_si.pdf}.
+    \item \textbf{Devolución con anotaciones:} El asesor puede descargar el borrador, agregarle notas o marcas de corrección y subir una copia corregida a la plataforma, manteniéndose ambos archivos vinculados a la misma entrega para consultarse lado a lado.
+\end{itemize}
 
-\subsubsection{Minutas digitales de asesoría}
-Una minuta es un registro escrito que se llena al terminar una junta o reunión para dejar asentados los temas que se platicaron, los acuerdos tomados y las fechas pactadas de entrega \parencite{pmi2021}. La página web incluye un formulario específico donde el asesor escribe estos acuerdos al término de cada sesión, de modo que ambas partes tengan muy claro qué tareas deben entregar antes de la siguiente cita de trabajo.
+\subsubsection{Uso exclusivo e inspección del formato PDF}
+El formato PDF (\textit{Portable Document Format}) es un estándar internacional formalizado mediante la norma técnica ISO 32000-2 \parencite{iso32000}. La página web solicita que los borradores de tesis se suban obligatoriamente en este formato debido a que funciona como una fotografía digital congelada del documento. 
 
-\subsubsection{Regla de aviso por inactividad mayor a 30 días}
-Para evitar que los estudiantes se queden rezagados en el posgrado, la página web integra un reloj automático que compara la fecha de hoy contra el último día en que el tesista subió un avance en PDF o registró una minuta de asesoría. Si la cuenta llega a más de 30 días naturales sin ninguna actividad, el sistema coloca una alerta visual en el expediente del alumno para que el profesor y la coordinación se comuniquen con él a tiempo y le ayuden a retomar su tesis.
+Cuando un archivo se redacta en procesadores de texto editables (como Microsoft Word), suele ocurrir que al abrirlo en otra computadora, teléfono o sistema operativo diferente, los tipos de letra se reemplazan, las fórmulas matemáticas se desalinean, las tablas se cortan y las imágenes brincan de página. El formato PDF garantiza que el trabajo se visualice exactamente igual en cualquier pantalla, preservando la calidad tipográfica y el orden formal del posgrado.
+
+Asimismo, la página web no confía ciegamente en el nombre que tiene el archivo. Cada entrega pasa por una revisión automática en el servidor que examina dos cosas:
+\begin{enumerate}
+    \item \textbf{Firma de autenticidad (\textit{Magic Bytes}):} El sistema abre los primeros bytes internos del documento para confirmar que comience con el código \texttt{\%PDF-}. Esto evita que alguien intente cambiarle el nombre a un programa ejecutable o a un virus para subirlo al servidor disfrazado de tarea.
+    \item \textbf{Marcador de fin de archivo:} Se verifica que el archivo termine con el código de cierre \texttt{\%\%EOF}, asegurando que el documento esté completo y no se haya cortado a la mitad por una falla de internet durante la carga.
+\end{enumerate}
+
+\subsubsection{Minutas de reunión frente a compromisos de trabajo}
+En el proceso de titulación tradicional, muchos acuerdos tomados verbalmente durante las asesorías se olvidan con el paso de las semanas porque no existe una constancia por escrito. Para solucionar esto de manera profesional, la página web separa este proceso en dos conceptos complementarios \parencite{pmi2021}:
+
+\begin{itemize}
+    \item \textbf{La Minuta de Asesoría (El acta de la cita):} Representa la constancia oficial de que la reunión de trabajo se llevó a cabo. Registra la fecha de la sesión, la modalidad (indicando el cubículo si fue presencial o el enlace si fue virtual por Teams o Meet), los temas revisados y la confirmación o firma de asistencia de ambas partes. Además, permite que el profesor adjunte lecturas, ejemplos o artículos complementarios en PDF para apoyar la investigación del estudiante.
+    \item \textbf{Los Compromisos y Acuerdos (Las tareas concretas):} Son las actividades puntuales que se desprenden de la reunión y funcionan como una lista de tareas pendientes (\textit{checklist}). Cada compromiso cuenta obligatoriamente con una descripción clara de la tarea, la persona responsable de realizarla (el alumno o el propio asesor), una fecha límite de cumplimiento y una casilla de verificación que el asesor marca cuando la tarea queda resuelta.
+\end{itemize}
+
+Para garantizar la formalidad académica, el sistema exige como regla obligatoria que toda minuta contenga como mínimo un compromiso registrado para poder ser guardada en la plataforma.
+
+\subsubsection{Semáforo de supervisión y regla de inactividad mayor a 30 días}
+El abandono de los estudios de posgrado suele ocurrir de forma silenciosa: un alumno deja de comunicarse unas semanas, el tiempo transcurre sin revisiones y, al cabo de varios meses, el retraso acumulado hace casi imposible concluir la tesis \parencite{sim2023technology}.
+
+Para evitar que los estudiantes se queden rezagados, la página web incorpora un reloj automático que supervisa continuamente el ritmo de trabajo \parencite{ali2024thesis}. El sistema toma como punto de referencia el campo de fecha de último avance y calcula cuántos días naturales han transcurrido restando el día de hoy menos esa última fecha registrada. Cada vez que el estudiante sube un nuevo avance en PDF o registra una minuta de reunión, el contador de inactividad se reinicia automáticamente a cero días.
+
+Para que la supervisión sea sencilla e inmediata, el sistema maneja un esquema de semáforo preventivo:
+\begin{itemize}
+    \item \textbf{Zona Verde (0 a 19 días):} Indica que el estudiante se encuentra en un ritmo normal y activo de investigación.
+    \item \textbf{Zona Amarilla (20 a 29 días):} Representa una llamada de atención preventiva para recordar al alumno y al tutor que el periodo de tolerancia está próximo a vencer.
+    \item \textbf{Zona Roja (30 días o más):} Se activa una alerta formal de rezago en el expediente. Cuando se superan los 30 días naturales sin ninguna actividad, el sistema coloca un aviso visual destacado en los paneles del asesor y del coordinador para que puedan intervenir oportunamente, comunicarse con el alumno y brindarle el apoyo académico necesario antes de que pierda el semestre.
+\end{itemize}
+
+\subsubsection{Comunicación centralizada y trazabilidad de revisiones}
+La práctica habitual de enviar borradores por correo electrónico personal o mensajes de WhatsApp provoca que las dudas, observaciones y correcciones queden dispersas y sin respaldo institucional. 
+
+En la página web, cada entrega de tesis cuenta con su propio canal de mensajes integrado. De esta manera, las preguntas del estudiante y las observaciones del profesor quedan ligadas directamente a la versión de borrador que se está evaluando. Esto asegura la trazabilidad del trabajo académico: cualquier miembro autorizado puede consultar qué se discutió, qué se corrigió y en qué fecha se autorizó cada cambio a lo largo de todo el posgrado.

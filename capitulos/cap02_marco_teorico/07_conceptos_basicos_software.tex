@@ -1,18 +1,61 @@
 \subsection{Conceptos básicos de software}
 \label{subsec:conceptos_software}
 
-Para comprender la estructura técnica sobre la que se construye la página web, se describen de forma sencilla tres fundamentos de computación:
+Para comprender la estructura técnica sobre la que se construye la página web, se describen de forma sencilla los fundamentos de computación que hacen posible su funcionamiento:
 
 \subsubsection{Arquitectura Cliente--Servidor}
-La página web opera bajo el esquema de cliente--servidor \parencite{tanenbaum2011redes}. En este modelo, el usuario entra a internet desde su navegador en la computadora o celular (el cliente) y solicita información. Esta petición viaja por la red hasta una computadora central protegida (el servidor), la cual se encarga de revisar los permisos, procesar las pantallas y devolver los archivos y datos correspondientes.
+La página web opera bajo el modelo clásico de cliente--servidor \parencite{tanenbaum2011redes}. Este esquema se puede entender fácilmente con el ejemplo de un restaurante:
+\begin{itemize}
+    \item \textbf{El Cliente (El comensal):} Es el alumno, profesor o coordinador que entra a internet desde su computadora o celular a través de un navegador web (como Google Chrome o Edge) y pide ver una pantalla o subir un avance.
+    \item \textbf{La Red (El mesero):} Es la conexión a internet encargada de llevar el pedido del usuario hacia el servidor y traer de vuelta la respuesta.
+    \item \textbf{El Servidor (La cocina protegida):} Es una computadora central encendida todo el tiempo en la facultad. Recibe la petición, comprueba si el usuario tiene permiso para entrar, prepara los datos y devuelve la pantalla armada con la información solicitada.
+\end{itemize}
 
-\subsubsection{Bases de datos organizadas en tablas (Relacionales)}
-Toda la información del seguimiento de tesis se guarda dentro de una base de datos relacional \parencite{silberschatz2014}. En este esquema, los datos se ordenan en tablas de filas y columnas que se conectan entre sí mediante identificadores comunes (por ejemplo, la tabla de alumnos se conecta con la de asesores, la de entregas en PDF y la de minutas). Esto asegura que la información no se revuelva, que ningún archivo quede huérfano y que no existan datos repetidos.
+\subsubsection{El framework Django y su funcionamiento interno}
+Para no construir la página web desde cero inventando cada botón y cada conexión, se utilizó \textbf{Django}, el cual es un conjunto de herramientas y piezas de software prefabricadas en el lenguaje de programación Python \parencite{rubio2017}. 
+
+Django funciona como un equipo de trabajo muy coordinado dentro del servidor mediante una arquitectura llamada \textit{Modelo--Plantilla--Vista} (MTV). Como se muestra en la Figura~\ref{fig:funcionamiento_django}, cada vez que un usuario interactúa con la página, ocurren cuatro pasos en milésimas de segundo:
+
+\begin{enumerate}
+    \item \textbf{El recepcionista (URLs):} El sistema lee la dirección web a la que intenta ingresar el usuario (por ejemplo, \texttt{/alumno/entregas/}) y la dirige al área que sabe atenderla.
+    \item \textbf{El cerebro (Las Vistas):} Es el encargado de la lógica. Revisa que el usuario haya iniciado sesión con su cuenta correcta, calcula cuántos días de inactividad lleva el estudiante o comprueba que el archivo subido sea un PDF real.
+    \item \textbf{El bibliotecario (Los Modelos y el ORM):} Si la vista necesita datos, no escribe código de base de datos complicado; le pide al modelo que busque o guarde los registros en MySQL de forma protegida.
+    \item \textbf{El diseñador (Las Plantillas HTML):} Toma la información limpia entregada por la vista y la acomoda dentro de un molde visual con Bootstrap para enviar al navegador una pantalla ordenada y con colores nítidos.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\linewidth]{assets/software/funcionamiento_django.png}
+    \caption{Flujo de trabajo y procesamiento de peticiones dentro del servidor con Django.}
+    \label{fig:funcionamiento_django}
+\end{figure}
+
+\subsubsection{Razones para elegir Django en el desarrollo de la página web}
+Al inicio del proyecto se evaluaron distintas opciones tecnológicas, como programar el diseño visual con herramientas separadas (por ejemplo, Angular o React) y conectarlas con otro programa de fondo. Sin embargo, para los objetivos de seguimiento de tesis, Django demostró ser la alternativa más conveniente por cuatro ventajas principales, resumidas en la Figura~\ref{fig:ventajas_django}:
+
+\begin{enumerate}
+    \item \textbf{Filosofía de baterías incluidas:} Django viene con casi todo lo necesario ya integrado de fábrica: sistema de cuentas de usuario, manejo de sesiones, formularios para subir archivos y protección de contraseñas, lo que evita perder tiempo instalando decenas de programas externos que podrían fallar.
+    \item \textbf{Desarrollo en un solo proyecto:} Al generar tanto las pantallas visibles como las reglas lógicas en el mismo sistema, no hay necesidad de mantener dos proyectos divididos. Esto hace que la página sea más fácil de probar, corregir y mantener por el propio desarrollador.
+    \item \textbf{Seguridad integrada:} Django bloquea en automático los errores más comunes de internet (como inyecciones SQL o formularios falsificados), asegurando que los expedientes de titulación no sean alterados por curiosos.
+    \item \textbf{Panel administrativo listo para usarse:} Incluye una sección interna de control que le permite a la coordinación escolar supervisar cuentas y revisar el estado general del posgrado sin necesidad de programar pantallas administrativas complejas desde cero.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{assets/software/ventajas_django.png}
+    \caption{Principales beneficios y ventajas de utilizar Django para la plataforma.}
+    \label{fig:ventajas_django}
+\end{figure}
+
+\subsubsection{Bases de datos organizadas en tablas (Relacionales y ORM)}
+Toda la información del seguimiento de tesis se almacena dentro de una base de datos relacional en MySQL (\texttt{tesina\_db}) \parencite{silberschatz2014}. En este sistema, los datos se ordenan en tablas de renglones y columnas (usuarios, entregables, minutas y alertas) conectadas entre sí mediante llaves y números de identificación.
+
+Para conectar Python con MySQL, Django cuenta con un traductor inteligente llamado \textbf{ORM} (\textit{Object-Relational Mapping}). Gracias al ORM, no se escriben órdenes manuales en lenguaje SQL sueltas en el código; el programador maneja los datos como si fueran objetos de Python y el ORM se encarga de crear las tablas, guardar los archivos y evitar comandos trampa que pudieran dañar la información.
 
 \subsubsection{Control de acceso basado en roles}
-Para cuidar la privacidad de la comunidad académica, la página web implementa un control de acceso por roles \parencite{ferraiolo2007}. Esto garantiza que cada usuario tenga una cuenta propia y visualice únicamente lo que le toca revisar:
+Para garantizar la privacidad y cumplir con las normas de confidencialidad escolar de la facultad, la página web aplica un control de acceso por roles \parencite{ferraiolo2007}. Esto asegura que cada persona entre con su propia cuenta y vea únicamente lo que le corresponde:
 \begin{itemize}
-    \item \textbf{Rol Alumno:} Únicamente puede consultar su propio expediente, subir sus borradores de tesis en PDF y revisar la lista de compromisos y minutas de sus asesorías.
-    \item \textbf{Rol Asesor:} Le permite ver la lista de sus alumnos asignados, descargar los archivos de borrador entregados, escribir correcciones y llenar las minutas al terminar cada reunión.
-    \item \textbf{Rol Coordinación:} Brinda una vista general de todo el posgrado para supervisar el ritmo de avance de todos los estudiantes y atender oportunamente los avisos de inactividad que superen los 30 días.
+    \item \textbf{Rol Alumno:} Únicamente puede consultar su propio proyecto de investigación, subir sus entregables de tesis en formato PDF, leer los comentarios de su asesor y consultar los acuerdos pactados en sus reuniones.
+    \item \textbf{Rol Asesor:} Le permite ver la lista exclusiva de los estudiantes que tiene bajo su dirección, descargar los borradores en PDF, redactar notas de corrección y registrar las minutas al finalizar cada asesoría.
+    \item \textbf{Rol Coordinador:} Proporciona una vista global de todo el programa de posgrado para dar de alta convocatorias, autorizar las cuentas de los nuevos profesores y revisar las alertas preventivas cuando un alumno acumula más de 30 días naturales sin registrar avances.
 \end{itemize}
